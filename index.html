@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Gym</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+<style>
+  :root{
+    --bg:#0b0d10; --card:#15181d; --card2:#1c2027; --line:#272c34;
+    --fg:#e8ebf0; --dim:#8b93a1; --accent:#4ade80; --warn:#f87171;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;background:var(--bg);color:var(--fg)}
+  body{
+    font:16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
+    padding:0 14px calc(96px + env(safe-area-inset-bottom));
+    max-width:640px;margin:0 auto;
+  }
+  header{padding:18px 0 10px;position:sticky;top:0;background:linear-gradient(var(--bg) 70%,transparent);z-index:5}
+  h1{font-size:19px;margin:0;letter-spacing:-.02em}
+  .sub{color:var(--dim);font-size:13px;margin-top:3px}
+  .tabs{display:flex;gap:6px;margin-top:12px}
+  .tab{
+    flex:1;padding:9px 4px;border:1px solid var(--line);background:var(--card);
+    color:var(--dim);border-radius:9px;font-size:13px;font-weight:600;text-align:center;cursor:pointer
+  }
+  .tab.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
+  .note{
+    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--warn);
+    border-radius:9px;padding:11px 13px;font-size:13.5px;color:var(--dim);margin:12px 0
+  }
+  .note b{color:var(--fg)}
+
+  .ex{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px;margin-bottom:11px}
+  .ex.done{opacity:.5}
+  .exhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .name{font-size:17px;font-weight:650;letter-spacing:-.01em}
+  .kind{color:var(--dim);font-size:12.5px;font-weight:400}
+  .meta{color:var(--dim);font-size:13px;margin-top:5px}
+  .cue{font-size:13.5px;color:var(--dim);margin-top:9px;padding-left:10px;border-left:2px solid var(--line)}
+  .cue b{color:var(--fg);font-weight:600}
+
+  .row{display:flex;align-items:center;gap:9px;margin-top:12px;flex-wrap:wrap}
+  .wt{
+    width:112px;padding:10px;background:var(--card2);border:1px solid var(--line);
+    border-radius:9px;color:var(--fg);font-size:15px;font-weight:600;font-family:inherit
+  }
+  .wt::placeholder{color:#5b6474;font-weight:400}
+  .sets{display:flex;gap:7px;margin-left:auto}
+  .set{
+    width:46px;height:44px;border-radius:10px;border:1px solid var(--line);
+    background:var(--card2);color:var(--dim);font-size:15px;font-weight:700;cursor:pointer
+  }
+  .set.on{background:var(--accent);border-color:var(--accent);color:#06240f}
+  .rest{
+    padding:10px 13px;border-radius:9px;border:1px solid var(--line);background:var(--card2);
+    color:var(--fg);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit
+  }
+
+  #bar{
+    position:fixed;left:0;right:0;bottom:0;z-index:10;
+    background:rgba(13,16,20,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);
+    padding:11px 14px calc(11px + env(safe-area-inset-bottom));
+    display:flex;align-items:center;gap:11px;max-width:640px;margin:0 auto
+  }
+  #clock{font-size:29px;font-weight:700;font-variant-numeric:tabular-nums;min-width:82px;letter-spacing:-.02em}
+  #clock.go{color:var(--accent)}
+  #clabel{font-size:12.5px;color:var(--dim);flex:1;line-height:1.3}
+  .btn{
+    padding:12px 15px;border-radius:10px;border:0;background:var(--fg);color:var(--bg);
+    font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap
+  }
+  .btn.ghost{background:var(--card2);color:var(--fg);border:1px solid var(--line)}
+  footer{color:var(--dim);font-size:12.5px;text-align:center;padding:6px 0 4px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Session <span id="stitle"></span></h1>
+  <div class="sub" id="ssub"></div>
+  <div class="tabs" id="tabs"></div>
+</header>
+
+<div id="app"></div>
+
+<div class="note">
+  <b>Stop rule.</b> Sharp pain in the right ankle or the top of the foot → stop that exercise and text it in. Dull muscle soreness is fine to train through.<br><br>
+  <b>Both feet on everything.</b> No single-leg loading, no running, no jumping until after 24 Sep.
+</div>
+
+<footer>Weights save on this phone automatically.</footer>
+
+<div id="bar">
+  <div id="clock">0:00</div>
+  <div id="clabel">Tap a rest button</div>
+  <button class="btn ghost" onclick="stopT()">Reset</button>
+  <button class="btn" onclick="copyLog()" id="copybtn">Copy log</button>
+</div>
+
+<script>
+const W = [
+  {n:"Dumbbell bench press", k:"flat bench", w:"35 lb / hand", s:2, r:"8–10", t:"3s down · 1s pause on chest · 1s up", rest:120,
+   cue:"Pause a full second on the chest. <b>No bounce.</b>"},
+  {n:"Seated cable row", k:"neutral grip", w:"60 lb", s:2, r:"10–12", t:"3s on the return", rest:120,
+   cue:"Shoulder blade moves first, <b>then</b> the elbow. Don't shrug."},
+  {n:"Lat pulldown", k:"wide, palms forward", w:"60 lb", s:2, r:"8–10", t:"3s on the release", rest:120,
+   cue:"Chest up. Drive the elbows <b>down</b>, not back."},
+  {n:"DB shoulder press", k:"seated, back supported", w:"20 lb / hand", s:2, r:"8–10", t:"controlled", rest:120,
+   cue:"Light on purpose. If the right side drifts forward, <b>drop to 15s</b>."},
+  {n:"Cable face pull", k:"rope, high pulley", w:"25 lb", s:2, r:"15", t:"controlled", rest:60,
+   cue:"Pull to your <b>forehead</b>. Thumbs rotate back at the end."},
+  {n:"Standing calf raise", k:"machine", w:"70 lb", s:2, r:"12–15", t:"2s hold in the stretch at the bottom", rest:60,
+   cue:"<b>Both feet.</b> The stretch at the bottom is the whole point."},
+  {n:"Tibialis raise", k:"bodyweight, back to a wall", w:"body", s:2, r:"15–20", t:"slow both ways", rest:60,
+   cue:"The front-of-shin one. <b>Right leg is the one that matters.</b>"}
+];
+
+const A = [
+  {n:"Hack squat", k:"machine", w:"sled + 45 lb / side", s:2, r:"8–10", t:"3s down", rest:180,
+   cue:"Three full seconds down. The lowering is what builds tendon tolerance."},
+  {n:"Dumbbell bench press", k:"flat bench", w:"35 lb / hand", s:2, r:"8–10", t:"3s down · 1s pause", rest:120,
+   cue:"Pause on the chest. No bounce."},
+  {n:"Seated cable row", k:"neutral grip", w:"60 lb", s:2, r:"10–12", t:"3s on the return", rest:120,
+   cue:"Shoulder blade first, then elbow. This is the neck work."},
+  {n:"Seated leg curl", k:"machine", w:"45 lb", s:2, r:"10–12", t:"1s squeeze at the top", rest:90,
+   cue:"Hamstrings. Go lighter if they're still sore."},
+  {n:"Cable face pull", k:"rope, high pulley", w:"25 lb", s:2, r:"15", t:"controlled", rest:60,
+   cue:"To the forehead, thumbs back."},
+  {n:"Standing calf raise", k:"machine", w:"70 lb", s:2, r:"12–15", t:"2s stretch at the bottom", rest:60,
+   cue:"<b>Both feet.</b>"}
+];
+
+const B = [
+  {n:"Romanian deadlift", k:"barbell or DBs", w:"—", s:2, r:"8–10", t:"3s down", rest:180,
+   cue:"Push the hips back. Bar stays against the legs. Stop when the hamstrings run out, not when the back rounds."},
+  {n:"Lat pulldown", k:"wide, palms forward", w:"60 lb", s:2, r:"8–10", t:"3s on the release", rest:120,
+   cue:"Elbows down, not back."},
+  {n:"DB shoulder press", k:"seated, back supported", w:"20 lb / hand", s:2, r:"8–10", t:"controlled", rest:120,
+   cue:"Light. Right shoulder sits higher — watch it."},
+  {n:"Leg press", k:"machine", w:"—", s:2, r:"10–12", t:"controlled", rest:120,
+   cue:"<b>Both feet.</b> Don't let the heels lift off the plate."},
+  {n:"Tibialis raise", k:"bodyweight, back to a wall", w:"body", s:2, r:"15–20", t:"slow both ways", rest:60,
+   cue:"Right leg is the one that matters."},
+  {n:"Curl + pushdown", k:"superset, no rest between", w:"—", s:2, r:"12–15", t:"controlled", rest:90,
+   cue:"Arms. Keep it light, this is the dessert."}
+];
+
+const S = {
+  U:{name:"Upper", sub:"Thu 10 Sep · week 1 · 2 sets, stop 4 reps short", ex:W},
+  A:{name:"A", sub:"Full body · 2 sets, stop 4 reps short", ex:A},
+  B:{name:"B", sub:"Full body · 2 sets, stop 4 reps short", ex:B}
+};
+
+let cur = localStorage.getItem("cur") || "U";
+const key = (k,i) => "g:"+cur+":"+k+":"+i;
+
+function render(){
+  localStorage.setItem("cur", cur);
+  stitle.textContent = S[cur].name;
+  ssub.textContent = S[cur].sub;
+
+  tabs.innerHTML = Object.keys(S).map(k =>
+    `<div class="tab ${k===cur?'on':''}" onclick="cur='${k}';render()">${S[k].name}</div>`).join("");
+
+  app.innerHTML = S[cur].ex.map((e,i) => {
+    const sets = [...Array(e.s)].map((_,j) =>
+      `<button class="set ${localStorage.getItem(key('s'+j,i))?'on':''}" onclick="tap(${i},${j},this)">${j+1}</button>`).join("");
+    return `<div class="ex" id="ex${i}">
+      <div class="exhead">
+        <div class="name">${String.fromCharCode(65+i)}. ${e.n}</div>
+        <div class="kind">${e.k}</div>
+      </div>
+      <div class="meta">${e.s} × ${e.r} &nbsp;·&nbsp; ${e.t}</div>
+      <div class="cue">${e.cue}</div>
+      <div class="row">
+        <input class="wt" id="w${i}" placeholder="${e.w}" value="${localStorage.getItem(key('w',i))||''}"
+               oninput="localStorage.setItem('${key('w',i)}',this.value)">
+        <button class="rest" onclick="startT(${e.rest},'${e.n.replace(/'/g,"")}')">Rest ${e.rest<60?e.rest+'s':(e.rest/60)+' min'}</button>
+        <div class="sets">${sets}</div>
+      </div>
+    </div>`;
+  }).join("");
+  S[cur].ex.forEach((e,i)=>mark(i));
+}
+
+function tap(i,j,el){
+  const k = key('s'+j,i);
+  if(localStorage.getItem(k)){ localStorage.removeItem(k); el.classList.remove("on"); }
+  else { localStorage.setItem(k,"1"); el.classList.add("on"); startT(S[cur].ex[i].rest, S[cur].ex[i].n); }
+  mark(i);
+}
+function mark(i){
+  const e = S[cur].ex[i];
+  const all = [...Array(e.s)].every((_,j)=>localStorage.getItem(key('s'+j,i)));
+  document.getElementById("ex"+i).classList.toggle("done", all);
+}
+
+let t=null, left=0, lock=null;
+async function keepAwake(){ try{ if("wakeLock" in navigator && !lock) lock = await navigator.wakeLock.request("screen"); }catch(e){} }
+function startT(sec,label){
+  keepAwake(); clearInterval(t); left=sec;
+  clabel.textContent = "Rest — next set of "+label;
+  clock.classList.add("go"); tick();
+  t = setInterval(()=>{ left--; tick(); if(left<=0){ clearInterval(t); done(); } },1000);
+}
+function tick(){ clock.textContent = Math.floor(left/60)+":"+String(Math.max(left,0)%60).padStart(2,"0"); }
+function done(){
+  clock.classList.remove("go"); clabel.textContent = "Go.";
+  if(navigator.vibrate) navigator.vibrate([220,90,220]);
+  try{
+    const c=new (window.AudioContext||window.webkitAudioContext)(), o=c.createOscillator(), g=c.createGain();
+    o.frequency.value=880; o.connect(g); g.connect(c.destination); g.gain.value=.25;
+    o.start(); o.stop(c.currentTime+.35);
+  }catch(e){}
+}
+function stopT(){ clearInterval(t); left=0; tick(); clock.classList.remove("go"); clabel.textContent="Tap a rest button"; }
+
+function copyLog(){
+  const d = new Date().toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
+  let out = "Session "+S[cur].name+" — "+d+"\n";
+  S[cur].ex.forEach((e,i)=>{
+    const w = (document.getElementById("w"+i).value || "").trim();
+    const n = [...Array(e.s)].filter((_,j)=>localStorage.getItem(key('s'+j,i))).length;
+    if(!w && !n) return;
+    out += "• "+e.n+" — "+(w||"?")+" × "+n+"/"+e.s+" sets\n";
+  });
+  out += "\nFelt: \nAnkle: ";
+  navigator.clipboard.writeText(out).then(()=>{
+    copybtn.textContent="Copied ✓"; setTimeout(()=>copybtn.textContent="Copy log",1600);
+  },()=>{ prompt("Copy this:", out); });
+}
+
+function reset(){
+  Object.keys(localStorage).filter(k=>k.startsWith("g:"+cur+":s")).forEach(k=>localStorage.removeItem(k));
+  render();
+}
+document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") keepAwake(); });
+render();
+</script>
+</body>
+</html>
