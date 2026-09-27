@@ -201,13 +201,24 @@ function mark(i){
   document.getElementById("ex"+i).classList.toggle("done", all);
 }
 
-let t=null, left=0, lock=null;
+let t=null, left=0, end=0, lock=null;
 async function keepAwake(){ try{ if("wakeLock" in navigator && !lock) lock = await navigator.wakeLock.request("screen"); }catch(e){} }
+// Count down against a wall-clock end time: phones pause intervals while locked,
+// so decrementing a counter each tick loses the time spent in the background.
 function startT(sec,label){
-  keepAwake(); clearInterval(t); left=sec;
+  keepAwake(); clearInterval(t);
+  end = Date.now()+sec*1000;
+  localStorage.setItem("tEnd",end); localStorage.setItem("tLabel",label);
+  run(label);
+}
+function run(label){
   clabel.textContent = "Rest — next set of "+label;
-  clock.classList.add("go"); tick();
-  t = setInterval(()=>{ left--; tick(); if(left<=0){ clearInterval(t); done(); } },1000);
+  clock.classList.add("go"); step();
+  t = setInterval(step,250);
+}
+function step(){
+  left = Math.max(0, Math.ceil((end-Date.now())/1000)); tick();
+  if(left<=0){ clearInterval(t); localStorage.removeItem("tEnd"); done(); }
 }
 function tick(){ clock.textContent = Math.floor(left/60)+":"+String(Math.max(left,0)%60).padStart(2,"0"); }
 function done(){
@@ -219,7 +230,7 @@ function done(){
     o.start(); o.stop(c.currentTime+.35);
   }catch(e){}
 }
-function stopT(){ clearInterval(t); left=0; tick(); clock.classList.remove("go"); clabel.textContent="Tap a rest button"; }
+function stopT(){ clearInterval(t); localStorage.removeItem("tEnd"); left=0; tick(); clock.classList.remove("go"); clabel.textContent="Tap a rest button"; }
 
 function copyLog(){
   const d = new Date().toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
@@ -240,8 +251,11 @@ function reset(){
   Object.keys(localStorage).filter(k=>k.startsWith("g:"+cur+":s")).forEach(k=>localStorage.removeItem(k));
   render();
 }
-document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") keepAwake(); });
+document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible"){ keepAwake(); if(localStorage.getItem("tEnd")) step(); } });
 render();
+// The browser may reload the tab after a long lock; pick a running rest back up.
+if(+localStorage.getItem("tEnd") > Date.now()){ end = +localStorage.getItem("tEnd"); run(localStorage.getItem("tLabel")||""); }
+else localStorage.removeItem("tEnd");
 </script>
 </body>
 </html>
