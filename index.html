@@ -57,6 +57,12 @@
     background:var(--card2);color:var(--dim);font-size:15px;font-weight:700;cursor:pointer
   }
   .set.on{background:var(--accent);border-color:var(--accent);color:#06240f}
+  .srow{display:flex;align-items:center;gap:9px;margin-top:9px}
+  .srow .wt{width:74px;text-align:center}
+  .u{color:var(--dim);font-size:12.5px;flex:1}
+  .step{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:var(--card2)}
+  .step button{width:42px;height:44px;border:0;background:none;color:var(--fg);font-size:20px;cursor:pointer}
+  .step span{min-width:28px;text-align:center;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
   .rest{
     padding:10px 13px;border-radius:9px;border:1px solid var(--line);background:var(--card2);
     color:var(--fg);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit
@@ -94,7 +100,7 @@
   <b>Both feet on everything.</b> No single-leg loading, no running, no jumping until after 24 Sep.
 </div>
 
-<footer>Weights save on this phone automatically.</footer>
+<footer>Change set 1 and the sets below follow. Everything saves on this phone.</footer>
 
 <div id="bar">
   <div id="clock">0:00</div>
@@ -105,49 +111,49 @@
 
 <script>
 const W = [
-  {n:"Dumbbell bench press", k:"flat bench", w:"35 lb / hand", s:2, r:"8–10", t:"3s down · 1s pause on chest · 1s up", rest:120,
+  {n:"Dumbbell bench press", k:"flat bench", w:"35 lb / hand", wd:"35", u:"lb / hand", s:2, r:"8–10", t:"3s down · 1s pause on chest · 1s up", rest:120,
    cue:"Pause a full second on the chest. <b>No bounce.</b>"},
-  {n:"Seated cable row", k:"neutral grip", w:"60 lb", s:2, r:"10–12", t:"3s on the return", rest:120,
+  {n:"Seated cable row", k:"neutral grip", w:"60 lb", wd:"60", u:"lb", s:2, r:"10–12", t:"3s on the return", rest:120,
    cue:"Shoulder blade moves first, <b>then</b> the elbow. Don't shrug."},
-  {n:"Lat pulldown", k:"wide, palms forward", w:"60 lb", s:2, r:"8–10", t:"3s on the release", rest:120,
+  {n:"Lat pulldown", k:"wide, palms forward", w:"60 lb", wd:"60", u:"lb", s:2, r:"8–10", t:"3s on the release", rest:120,
    cue:"Chest up. Drive the elbows <b>down</b>, not back."},
-  {n:"DB shoulder press", k:"seated, back supported", w:"20 lb / hand", s:2, r:"8–10", t:"controlled", rest:120,
+  {n:"DB shoulder press", k:"seated, back supported", w:"20 lb / hand", wd:"20", u:"lb / hand", s:2, r:"8–10", t:"controlled", rest:120,
    cue:"Light on purpose. If the right side drifts forward, <b>drop to 15s</b>."},
-  {n:"Cable face pull", k:"rope, high pulley", w:"25 lb", s:2, r:"15", t:"controlled", rest:60,
+  {n:"Cable face pull", k:"rope, high pulley", w:"25 lb", wd:"25", u:"lb", s:2, r:"15", t:"controlled", rest:60,
    cue:"Pull to your <b>forehead</b>. Thumbs rotate back at the end."},
-  {n:"Standing calf raise", k:"machine", w:"70 lb", s:2, r:"12–15", t:"2s hold in the stretch at the bottom", rest:60,
+  {n:"Standing calf raise", k:"machine", w:"70 lb", wd:"70", u:"lb", s:2, r:"12–15", t:"2s hold in the stretch at the bottom", rest:60,
    cue:"<b>Both feet.</b> The stretch at the bottom is the whole point."},
-  {n:"Tibialis raise", k:"bodyweight, back to a wall", w:"body", s:2, r:"15–20", t:"slow both ways", rest:60,
+  {n:"Tibialis raise", k:"bodyweight, back to a wall", w:"body", wd:"BW", u:"", s:2, r:"15–20", t:"slow both ways", rest:60,
    cue:"The front-of-shin one. <b>Right leg is the one that matters.</b>"}
 ];
 
 const A = [
-  {n:"Hack squat", k:"machine", w:"sled + 25–35 lb / side", s:3, r:"8–10", t:"3s down", rest:120,
+  {n:"Hack squat", k:"machine", w:"sled + 25–35 lb / side", wd:"25", u:"lb / side", s:3, r:"8–10", t:"3s down", rest:120,
    cue:"Go only as deep as your heels stay flat. Depth decides the weight."},
-  {n:"Dumbbell bench press", k:"flat bench", w:"35 lb / hand", s:3, r:"8–10", t:"3s down · 1s pause", rest:120,
+  {n:"Dumbbell bench press", k:"flat bench", w:"35 lb / hand", wd:"35", u:"lb / hand", s:3, r:"8–10", t:"3s down · 1s pause", rest:120,
    cue:"Pause on the chest. No bounce."},
-  {n:"Seated cable row", k:"neutral grip", w:"50 lb", s:3, r:"10–12", t:"3s on the return", rest:90,
+  {n:"Seated cable row", k:"neutral grip", w:"50 lb", wd:"50", u:"lb", s:3, r:"10–12", t:"3s on the return", rest:90,
    cue:"Shoulder blade first, then elbow. This is the neck work."},
-  {n:"Seated leg curl", k:"machine", w:"55 lb", s:3, r:"10–12", t:"1s squeeze at the top", rest:90,
+  {n:"Seated leg curl", k:"machine", w:"55 lb", wd:"55", u:"lb", s:3, r:"10–12", t:"1s squeeze at the top", rest:90,
    cue:"Hamstrings. Go lighter if they're still sore."},
-  {n:"Cable face pull", k:"rope, high pulley", w:"20–25 lb", s:3, r:"15", t:"controlled", rest:60,
+  {n:"Cable face pull", k:"rope, high pulley", w:"20–25 lb", wd:"25", u:"lb", s:3, r:"15", t:"controlled", rest:60,
    cue:"To the forehead, thumbs back."},
-  {n:"Standing calf raise", k:"machine", w:"50 lb", s:3, r:"12–15", t:"1s pause at the bottom", rest:60,
+  {n:"Standing calf raise", k:"machine", w:"50 lb", wd:"50", u:"lb", s:3, r:"12–15", t:"1s pause at the bottom", rest:60,
    cue:"<b>Both feet.</b> Don't skip it. If the ankle talks, drop it."}
 ];
 
 const B = [
-  {n:"Romanian deadlift", k:"barbell or DBs", w:"—", s:2, r:"8–10", t:"3s down", rest:180,
+  {n:"Romanian deadlift", k:"barbell or DBs", w:"—", wd:"", u:"lb", s:2, r:"8–10", t:"3s down", rest:180,
    cue:"Push the hips back. Bar stays against the legs. Stop when the hamstrings run out, not when the back rounds."},
-  {n:"Lat pulldown", k:"wide, palms forward", w:"60 lb", s:2, r:"8–10", t:"3s on the release", rest:120,
+  {n:"Lat pulldown", k:"wide, palms forward", w:"60 lb", wd:"60", u:"lb", s:2, r:"8–10", t:"3s on the release", rest:120,
    cue:"Elbows down, not back."},
-  {n:"DB shoulder press", k:"seated, back supported", w:"20 lb / hand", s:2, r:"8–10", t:"controlled", rest:120,
+  {n:"DB shoulder press", k:"seated, back supported", w:"20 lb / hand", wd:"20", u:"lb / hand", s:2, r:"8–10", t:"controlled", rest:120,
    cue:"Light. Right shoulder sits higher — watch it."},
-  {n:"Leg press", k:"machine", w:"—", s:2, r:"10–12", t:"controlled", rest:120,
+  {n:"Leg press", k:"machine", w:"—", wd:"", u:"lb", s:2, r:"10–12", t:"controlled", rest:120,
    cue:"<b>Both feet.</b> Don't let the heels lift off the plate."},
-  {n:"Tibialis raise", k:"bodyweight, back to a wall", w:"body", s:2, r:"15–20", t:"slow both ways", rest:60,
+  {n:"Tibialis raise", k:"bodyweight, back to a wall", w:"body", wd:"BW", u:"", s:2, r:"15–20", t:"slow both ways", rest:60,
    cue:"Right leg is the one that matters."},
-  {n:"Curl + pushdown", k:"superset, no rest between", w:"—", s:2, r:"12–15", t:"controlled", rest:90,
+  {n:"Curl + pushdown", k:"superset, no rest between", w:"—", wd:"", u:"lb", s:2, r:"12–15", t:"controlled", rest:90,
    cue:"Arms. Keep it light, this is the dessert."}
 ];
 
@@ -175,8 +181,14 @@ function render(){
     `<div class="tab ${k===cur?'on':''}" onclick="cur='${k}';render()">${S[k].name}</div>`).join("");
 
   app.innerHTML = S[cur].ex.map((e,i) => {
-    const sets = [...Array(e.s)].map((_,j) =>
-      `<button class="set ${localStorage.getItem(key('s'+j,i))?'on':''}" onclick="tap(${i},${j},this)">${j+1}</button>`).join("");
+    const sets = [...Array(e.s)].map((_,j) => `<div class="srow">
+        <button class="set ${localStorage.getItem(key('s'+j,i))?'on':''}" onclick="tap(${i},${j},this)">${j+1}</button>
+        <input class="wt" id="w${i}_${j}" inputmode="decimal" placeholder="lb" value="${val('w',i,j)}" oninput="setW(${i},${j},this.value)">
+        <span class="u">${e.u}</span>
+        <div class="step">
+          <button onclick="rep(${i},${j},-1)">−</button><span id="r${i}_${j}">${val('r',i,j)}</span><button onclick="rep(${i},${j},1)">+</button>
+        </div>
+      </div>`).join("");
     return `<div class="ex" id="ex${i}">
       <div class="exhead">
         <div class="name">${String.fromCharCode(65+i)}. ${e.n}</div>
@@ -184,15 +196,31 @@ function render(){
       </div>
       <div class="meta">${e.s} × ${e.r} &nbsp;·&nbsp; ${e.t}</div>
       <div class="cue">${e.cue}</div>
+      ${sets}
       <div class="row">
-        <input class="wt" id="w${i}" placeholder="${e.w}" value="${localStorage.getItem(key('w',i))||''}"
-               oninput="localStorage.setItem('${key('w',i)}',this.value)">
         <button class="rest" onclick="startT(${e.rest},'${e.n.replace(/'/g,"")}')">Rest ${e.rest<60?e.rest+'s':(e.rest/60)+' min'}</button>
-        <div class="sets">${sets}</div>
       </div>
     </div>`;
   }).join("");
   S[cur].ex.forEach((e,i)=>mark(i));
+}
+
+// A set's weight/reps: what was entered on it, else what the set above it shows, else the default.
+// So changing set 1 changes the untouched sets below it — one edit covers the whole exercise.
+function val(f,i,j){
+  for(let k=j;k>=0;k--){ const v=localStorage.getItem(key(f+k,i)); if(v!==null) return v; }
+  const e=S[cur].ex[i]; return f==='w' ? e.wd : parseInt(e.r);
+}
+function follow(i,j){
+  for(let k=j+1;k<S[cur].ex[i].s;k++){
+    if(localStorage.getItem(key('w'+k,i))===null) document.getElementById(`w${i}_${k}`).value=val('w',i,k);
+    if(localStorage.getItem(key('r'+k,i))===null) document.getElementById(`r${i}_${k}`).textContent=val('r',i,k);
+  }
+}
+function setW(i,j,v){ localStorage.setItem(key('w'+j,i),v); follow(i,j); }
+function rep(i,j,d){
+  const v=Math.max(0,+val('r',i,j)+d);
+  localStorage.setItem(key('r'+j,i),v); document.getElementById(`r${i}_${j}`).textContent=v; follow(i,j);
 }
 
 function tap(i,j,el){
@@ -242,10 +270,13 @@ function copyLog(){
   const d = new Date().toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
   let out = "Session "+S[cur].name+" — "+d+"\n";
   S[cur].ex.forEach((e,i)=>{
-    const w = (document.getElementById("w"+i).value || "").trim();
-    const n = [...Array(e.s)].filter((_,j)=>localStorage.getItem(key('s'+j,i))).length;
-    if(!w && !n) return;
-    out += "• "+e.n+" — "+(w||"?")+" × "+n+"/"+e.s+" sets\n";
+    const done = [...Array(e.s).keys()].filter(j=>localStorage.getItem(key('s'+j,i)));
+    if(!done.length) return;
+    const ws = done.map(j=>String(val('w',i,j)).trim()||"?"), rs = done.map(j=>val('r',i,j));
+    const u = e.u ? " "+e.u : "";
+    const line = ws.every(w=>w===ws[0]) ? ws[0]+u+" × "+rs.join(", ")
+                                        : done.map((_,x)=>ws[x]+"×"+rs[x]).join(", ")+u;
+    out += "• "+e.n+" — "+line+" ("+done.length+"/"+e.s+" sets)\n";
   });
   out += "\nFelt: \nAnkle: ";
   navigator.clipboard.writeText(out).then(()=>{
