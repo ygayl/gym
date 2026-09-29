@@ -44,6 +44,8 @@
   .meta{color:var(--dim);font-size:13px;margin-top:5px}
   .cue{font-size:13.5px;color:var(--dim);margin-top:9px;padding-left:10px;border-left:2px solid var(--line)}
   .cue b{color:var(--fg);font-weight:600}
+  .last{font-size:13px;color:var(--dim);margin-top:7px}
+  .last b{color:var(--accent);font-weight:600}
 
   .row{display:flex;align-items:center;gap:9px;margin-top:12px;flex-wrap:wrap}
   .wt{
@@ -196,6 +198,7 @@ function render(){
       </div>
       <div class="meta">${e.s} × ${e.r} &nbsp;·&nbsp; ${e.t}</div>
       <div class="cue">${e.cue}</div>
+      ${last(e)}
       ${sets}
       <div class="row">
         <button class="rest" onclick="startT(${e.rest},'${e.n.replace(/'/g,"")}')">Rest ${e.rest<60?e.rest+'s':(e.rest/60)+' min'}</button>
@@ -203,6 +206,23 @@ function render(){
     </div>`;
   }).join("");
   S[cur].ex.forEach((e,i)=>mark(i));
+}
+
+// Logged history (sessions.json, oldest first), matched to exercises by name across all sessions.
+let H = [];
+fetch("sessions.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{ H=d; render(); }).catch(()=>{});
+function last(e){
+  const hist = H.flatMap(s=>s.ex.filter(x=>x.n===e.n && x.sets.length).map(x=>({...x,date:s.date})));
+  if(!hist.length) return "";
+  const l = hist[hist.length-1], ws = l.sets.map(s=>s.w);
+  const reps = l.sets.every(s=>s.r===null) ? l.sets.length+" sets"
+             : l.sets.map(s=>s.r===null?"?":s.r).join(", ");
+  const line = ws.every(w=>w===ws[0]) ? ws[0]+" "+l.u+" × "+reps
+             : l.sets.map(s=>s.w+"×"+(s.r??"?")).join(", ")+" "+l.u;
+  const d = new Date(l.date+"T12:00").toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+  // Last-set weight per session (the working weight, not a misloaded first set); unit shown only where it differs from today's (e.g. RDL dumbbells → barbell).
+  const prog = hist.length>1 && hist.some(x=>x.sets.some(s=>+s.w)) ? "<br>"+hist.map(x=>x.sets[x.sets.length-1].w+(x.u!==e.u&&x.u?" "+x.u:"")).join(" → ") : "";
+  return `<div class="last">Last (${d}): <b>${line}</b>${l.note?" · "+l.note:""}${prog}</div>`;
 }
 
 // A set's weight/reps: what was entered on it, else what the set above it shows, else the default.
