@@ -143,24 +143,24 @@ const A = [
 ];
 
 const B = [
-  {n:"Romanian deadlift", k:"barbell or DBs", w:"—", wd:"", u:"lb", s:2, r:"8–10", t:"3s down", rest:180,
+  {n:"Romanian deadlift", k:"barbell or DBs", w:"30 lb / hand", wd:"30", u:"lb / hand", s:3, r:"8–10", t:"3s down", rest:180,
    cue:"Push the hips back. Bar stays against the legs. Stop when the hamstrings run out, not when the back rounds."},
-  {n:"Lat pulldown", k:"wide, palms forward", w:"60 lb", wd:"60", u:"lb", s:2, r:"8–10", t:"3s on the release", rest:120,
+  {n:"Lat pulldown", k:"wide, palms forward", w:"50 lb", wd:"50", u:"lb", s:3, r:"8–10", t:"3s on the release", rest:120,
    cue:"Elbows down, not back."},
-  {n:"DB shoulder press", k:"seated, back supported", w:"20 lb / hand", wd:"20", u:"lb / hand", s:2, r:"8–10", t:"controlled", rest:120,
+  {n:"DB shoulder press", k:"seated, back supported", w:"20 lb / hand", wd:"20", u:"lb / hand", s:3, r:"8–10", t:"controlled", rest:120,
    cue:"Light. Right shoulder sits higher — watch it."},
-  {n:"Leg press", k:"machine", w:"—", wd:"", u:"lb", s:2, r:"10–12", t:"controlled", rest:120,
+  {n:"Leg press", k:"machine", w:"35–45 lb / side", wd:"35", u:"lb / side", s:3, r:"10–12", t:"controlled", rest:120,
    cue:"<b>Both feet.</b> Don't let the heels lift off the plate."},
-  {n:"Tibialis raise", k:"bodyweight, back to a wall", w:"body", wd:"BW", u:"", s:2, r:"15–20", t:"slow both ways", rest:60,
+  {n:"Tibialis raise", k:"bodyweight, back to a wall", w:"body", wd:"BW", u:"", s:3, r:"15–20", t:"slow both ways", rest:60,
    cue:"Right leg is the one that matters."},
-  {n:"Curl + pushdown", k:"superset, no rest between", w:"—", wd:"", u:"lb", s:2, r:"12–15", t:"controlled", rest:90,
+  {n:"Curl + pushdown", k:"superset, no rest between", w:"curl 15 / hand · pushdown ~30", wd:"15", u:"lb", s:3, r:"12–15", t:"controlled", rest:90,
    cue:"Arms. Keep it light, this is the dessert."}
 ];
 
 const S = {
   U:{name:"Upper", sub:"Thu 10 Sep · week 1 · 2 sets, stop 4 reps short", ex:W},
   A:{name:"A", sub:"Full body · 3 sets, stop 2–3 reps short · finish: 2 farmer's carries + 2 bar hangs", ex:A},
-  B:{name:"B", sub:"Full body · 2 sets, stop 4 reps short", ex:B}
+  B:{name:"B", sub:"Full body · 3 sets, stop 2–3 reps short · finish: 2 farmer's carries + 2 bar hangs", ex:B}
 };
 
 let cur = localStorage.getItem("cur") || "U";
