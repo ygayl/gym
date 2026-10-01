@@ -40,5 +40,10 @@
     {"n":"Tibialis raise","u":"","sets":[],"note":"stopped: sharp pain behind the outer right ankle"},
     {"n":"Curl + pushdown","u":"lb / hand","sets":[{"w":17.5,"r":null},{"w":17.5,"r":null},{"w":17.5,"r":10}],"note":"curls; triceps logged separately"},
     {"n":"Triceps press-down machine","u":"lb","sets":[{"w":85,"r":null},{"w":85,"r":null},{"w":85,"r":15}]}
+  ]},
+  {"date":"2026-09-30","session":"Friend","ex":[
+    {"n":"Barbell back squat","u":"lb total","sets":[{"w":115,"r":null},{"w":115,"r":null}],"note":"35/side + 45 bar, first time"},
+    {"n":"Pull-up","u":"bodyweight","sets":[{"w":0,"r":3},{"w":0,"r":null},{"w":0,"r":null}],"note":"max 3 reps, 3 attempts"},
+    {"n":"Barbell bench press","u":"lb total","sets":[{"w":95,"r":null},{"w":95,"r":null}],"note":"25/side + 45 bar"}
   ]}
 ]
