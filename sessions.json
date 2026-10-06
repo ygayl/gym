@@ -45,5 +45,10 @@
     {"n":"Barbell back squat","u":"lb total","sets":[{"w":115,"r":null},{"w":115,"r":null}],"note":"35/side + 45 bar, first time"},
     {"n":"Pull-up","u":"bodyweight","sets":[{"w":0,"r":3},{"w":0,"r":null},{"w":0,"r":null}],"note":"max 3 reps, 3 attempts"},
     {"n":"Barbell bench press","u":"lb total","sets":[{"w":95,"r":null},{"w":95,"r":null}],"note":"25/side + 45 bar"}
+  ]},
+  {"date":"2026-10-06","session":"A","ex":[
+    {"n":"Hack squat","u":"lb / side","sets":[{"w":25,"r":12},{"w":25,"r":12},{"w":25,"r":12}]},
+    {"n":"Dumbbell bench press","u":"lb / hand","sets":[{"w":40,"r":8},{"w":40,"r":10},{"w":40,"r":10}]},
+    {"n":"Seated cable row","u":"lb","sets":[{"w":42.5,"r":10},{"w":42.5,"r":10},{"w":42.5,"r":10}]}
   ]}
 ]
