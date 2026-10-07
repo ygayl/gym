@@ -56,6 +56,8 @@
     {"n":"Bike","u":"min","sets":[{"w":30,"r":null}],"note":"easy"},
     {"n":"Lat pulldown","u":"lb","sets":[{"w":45,"r":10},{"w":45,"r":10},{"w":45,"r":10}]},
     {"n":"Roman chair","u":"lb","sets":[{"w":null,"r":10}],"note":"1 set only; 25 lb or bodyweight unconfirmed"},
-    {"n":"Dumbbell pullover","u":"lb","sets":[{"w":40,"r":12}],"note":"1 set only"}
+    {"n":"Dumbbell pullover","u":"lb","sets":[{"w":40,"r":12}],"note":"1 set only"},
+    {"n":"Barbell back squat","u":"lb total","sets":[{"w":45,"r":12}],"note":"empty bar; 25/side not confirmed; no back pinch"},
+    {"n":"Triceps press-down machine","u":"lb","sets":[{"w":null,"r":null}],"note":"1 set; weight/reps not reported"}
   ]}
 ]
