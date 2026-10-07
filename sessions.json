@@ -719,11 +719,11 @@
         "u": "lb",
         "sets": [
           {
-            "w": null,
+            "w": 25,
             "r": 10
           }
         ],
-        "note": "1 set only; 25 lb or bodyweight unconfirmed"
+        "note": "1 set only, 25 lb"
       },
       {
         "n": "Dumbbell pullover",
