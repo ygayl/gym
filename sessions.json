@@ -51,5 +51,11 @@
     {"n":"Dumbbell bench press","u":"lb / hand","sets":[{"w":40,"r":8},{"w":40,"r":10},{"w":40,"r":10}]},
     {"n":"Seated cable row","u":"lb","sets":[{"w":42.5,"r":10},{"w":42.5,"r":10},{"w":42.5,"r":10}]},
     {"n":"Cable face pull","u":"lb","sets":[{"w":30,"r":15},{"w":30,"r":15},{"w":30,"r":15}]}
+  ]},
+  {"date":"2026-10-07","session":"Light","ex":[
+    {"n":"Bike","u":"min","sets":[{"w":30,"r":null}],"note":"easy"},
+    {"n":"Lat pulldown","u":"lb","sets":[{"w":45,"r":10},{"w":45,"r":10},{"w":45,"r":10}]},
+    {"n":"Roman chair","u":"lb","sets":[{"w":null,"r":10}],"note":"1 set only; 25 lb or bodyweight unconfirmed"},
+    {"n":"Dumbbell pullover","u":"lb","sets":[{"w":40,"r":12}],"note":"1 set only"}
   ]}
 ]
