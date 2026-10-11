@@ -815,5 +815,82 @@
     "note": "50kg total (assumed incl. bar), 6-8 reps each set"
    }
   ]
+ },
+ {
+  "date": "2026-10-10",
+  "session": "Pull day",
+  "ex": [
+   {
+    "n": "Pull-up",
+    "u": "bodyweight",
+    "sets": [
+     {
+      "w": 0,
+      "r": 3
+     },
+     {
+      "w": 0,
+      "r": 3
+     },
+     {
+      "w": 0,
+      "r": 3
+     },
+     {
+      "w": 0,
+      "r": 3
+     }
+    ],
+    "note": "4x3, opened the session"
+   },
+   {
+    "n": "Lat pulldown",
+    "u": "lb",
+    "sets": [
+     {
+      "w": 50,
+      "r": 10
+     },
+     {
+      "w": 50,
+      "r": 10
+     },
+     {
+      "w": 50,
+      "r": 10
+     }
+    ]
+   },
+   {
+    "n": "Seated cable row",
+    "u": "lb",
+    "sets": [
+     {
+      "w": 50,
+      "r": 10
+     },
+     {
+      "w": 50,
+      "r": 10
+     },
+     {
+      "w": 50,
+      "r": 10
+     }
+    ],
+    "note": "reported as 'pull back', read as seated cable row"
+   },
+   {
+    "n": "Upright row",
+    "u": "lb",
+    "sets": [
+     {
+      "w": null,
+      "r": null
+     }
+    ],
+    "note": "barbell to chest, standing; weight/sets not reported"
+   }
+  ]
  }
 ]
