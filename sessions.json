@@ -892,5 +892,118 @@
     "note": "barbell to chest, standing; weight/sets not reported"
    }
   ]
+ },
+ {
+  "date": "2026-10-14",
+  "session": "A",
+  "ex": [
+   {
+    "n": "Dumbbell bench press",
+    "u": "lb / hand",
+    "sets": [
+     {
+      "w": 40,
+      "r": 8
+     },
+     {
+      "w": 40,
+      "r": 8
+     },
+     {
+      "w": 40,
+      "r": 8
+     }
+    ],
+    "note": "neutral grip (wrist)"
+   },
+   {
+    "n": "Seated cable row",
+    "u": "lb",
+    "sets": [
+     {
+      "w": 42.5,
+      "r": 10
+     },
+     {
+      "w": 42.5,
+      "r": 10
+     },
+     {
+      "w": 42.5,
+      "r": 10
+     }
+    ]
+   },
+   {
+    "n": "Cable face pull",
+    "u": "lb",
+    "sets": [
+     {
+      "w": 30,
+      "r": 12
+     },
+     {
+      "w": 30,
+      "r": 15
+     },
+     {
+      "w": 30,
+      "r": 15
+     }
+    ]
+   },
+   {
+    "n": "Hip abduction",
+    "u": "lb",
+    "sets": [
+     {
+      "w": 80,
+      "r": 12
+     },
+     {
+      "w": 80,
+      "r": 12
+     },
+     {
+      "w": 80,
+      "r": 12
+     }
+    ]
+   },
+   {
+    "n": "Leg extension hold",
+    "u": "lb",
+    "sets": [
+     {
+      "w": 40,
+      "r": 30
+     },
+     {
+      "w": 40,
+      "r": 30
+     },
+     {
+      "w": 55,
+      "r": 31
+     }
+    ],
+    "note": "r = seconds held"
+   },
+   {
+    "n": "Seated calf raise",
+    "u": "lb",
+    "sets": [
+     {
+      "w": 50,
+      "r": 12
+     },
+     {
+      "w": 50,
+      "r": 8
+     }
+    ],
+    "note": "2 of 3 sets"
+   }
+  ]
  }
 ]
