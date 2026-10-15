@@ -131,6 +131,8 @@ const W = [
 
 // Oct 14: knee hold (no squat/hack/leg press/lunge), back hold (no RDL), wrist (neutral grip only).
 // Put hack squat back in A and RDL + leg press back in B once the knee (Oct 26) and back are cleared.
+// Oct 14 (later): right forefoot pain on top near the 2nd toe → rule out metatarsal stress fracture.
+// Calf raise, tibialis raise and farmer's carries out until the foot is checked.
 const A = [
   {n:"Dumbbell bench press", k:"flat bench, palms facing each other", w:"40 lb / hand", wd:"40", u:"lb / hand", s:3, r:"8–10", t:"3s down · 1s pause", rest:120,
    cue:"Wrist <b>straight</b>, not bent back. Wrist over 3/10 → stop."},
@@ -143,9 +145,7 @@ const A = [
   {n:"Hip abduction", k:"machine, seated", w:"80 lb", wd:"80", u:"lb", s:3, r:"12–15", t:"1s squeeze out, 2s back", rest:60,
    cue:"Sit tall, don't rock. This is knee work too."},
   {n:"Leg extension hold", k:"machine, knee bent ~60°", w:"~40 lb", wd:"40", u:"lb", s:3, r:"30–45s hold", t:"hold, don't move", rest:60,
-   cue:"Knee pain <b>3/10 max</b>. Higher → lighter or shorter hold."},
-  {n:"Seated calf raise", k:"machine, seated", w:"50 lb", wd:"50", u:"lb", s:3, r:"12–15", t:"1s pause at the bottom", rest:60,
-   cue:"<b>Both feet.</b> Don't skip it. If the ankle talks, drop it."}
+   cue:"Knee pain <b>3/10 max</b>. Higher → lighter or shorter hold."}
 ];
 
 const B = [
@@ -159,16 +159,14 @@ const B = [
    cue:"Sit tall, don't rock. Side of the hip should burn. Zero ankle load."},
   {n:"Leg extension hold", k:"machine, knee bent ~60°", w:"~40 lb", wd:"40", u:"lb", s:3, r:"30–45s hold", t:"hold, don't move", rest:60,
    cue:"Knee pain <b>3/10 max</b>."},
-  {n:"Tibialis raise", k:"bodyweight, back to a wall", w:"body", wd:"BW", u:"", s:3, r:"15–20", t:"slow both ways", rest:60,
-   cue:"Right leg is the one that matters."},
   {n:"Curl + pushdown", k:"superset, no rest between", w:"curl 17.5 / hand · pushdown ~30", wd:"17.5", u:"lb", s:3, r:"12–15", t:"controlled", rest:90,
    cue:"Arms. Keep it light, this is the dessert."}
 ];
 
 const S = {
   U:{name:"Upper", sub:"Thu 10 Sep · week 1 · 2 sets, stop 4 reps short", ex:W},
-  A:{name:"A", sub:"Full body · 3 sets, stop 2–3 reps short · finish: 2 farmer's carries + 2 bar hangs", ex:A},
-  B:{name:"B", sub:"Full body · 3 sets, stop 2–3 reps short · finish: 2 farmer's carries + 2 bar hangs", ex:B}
+  A:{name:"A", sub:"Full body · 3 sets, stop 2–3 reps short · finish: 2 bar hangs", ex:A},
+  B:{name:"B", sub:"Full body · 3 sets, stop 2–3 reps short · finish: 2 bar hangs", ex:B}
 };
 
 let cur = localStorage.getItem("cur") || "U";
