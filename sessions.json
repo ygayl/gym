@@ -1354,5 +1354,72 @@
     ]
    }
   ]
+ },
+ {
+  "date": "2026-10-29",
+  "session": "Self-directed",
+  "ex": [
+   {
+    "n": "Squat",
+    "u": "lb",
+    "sets": [
+     {
+      "w": 20,
+      "r": 12
+     },
+     {
+      "w": 70,
+      "r": 8
+     },
+     {
+      "w": 70,
+      "r": 8
+     },
+     {
+      "w": 70,
+      "r": 8
+     }
+    ],
+    "note": "squat type not reported (20lb warm-up < 45 bar, so likely goblet or Smith); first squat since PFPS dx 10-26"
+   },
+   {
+    "n": "Seated cable row",
+    "u": "lb",
+    "sets": [
+     {
+      "w": 50,
+      "r": 12
+     },
+     {
+      "w": 50,
+      "r": 12
+     },
+     {
+      "w": 50,
+      "r": 12
+     }
+    ],
+    "note": "reported as 'pull back', read as seated cable row"
+   },
+   {
+    "n": "Dumbbell bench press",
+    "u": "lb / hand",
+    "sets": [
+     {
+      "w": 20,
+      "r": 12
+     },
+     {
+      "w": 20,
+      "r": 12
+     },
+     {
+      "w": 20,
+      "r": 12
+     }
+    ],
+    "note": "down from 45/hand on 10-18, reason not given"
+   }
+  ]
  }
 ]
