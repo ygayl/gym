@@ -1360,8 +1360,8 @@
   "session": "Self-directed",
   "ex": [
    {
-    "n": "Squat",
-    "u": "lb",
+    "n": "Barbell back squat",
+    "u": "lb total",
     "sets": [
      {
       "w": 20,
@@ -1380,7 +1380,7 @@
       "r": 8
      }
     ],
-    "note": "squat type not reported (20lb warm-up < 45 bar, so likely goblet or Smith); first squat since PFPS dx 10-26"
+    "note": "regular back squat, bar on upper back; 70 assumed to include the bar; first squat since PFPS dx 10-26, no PT clearance"
    },
    {
     "n": "Seated cable row",
@@ -1406,15 +1406,15 @@
     "u": "lb / hand",
     "sets": [
      {
-      "w": 20,
+      "w": 40,
       "r": 12
      },
      {
-      "w": 20,
+      "w": 40,
       "r": 12
      },
      {
-      "w": 20,
+      "w": 40,
       "r": 12
      }
     ],
