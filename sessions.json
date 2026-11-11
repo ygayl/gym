@@ -1421,5 +1421,79 @@
     "note": "down from 45/hand on 10-18, reason not given"
    }
   ]
+ },
+ {
+  "date": "2026-11-09",
+  "session": "Self-directed",
+  "ex": [
+   {
+    "n": "Barbell back squat",
+    "u": "lb total",
+    "sets": [
+     {
+      "w": 60,
+      "r": null
+     },
+     {
+      "w": 60,
+      "r": null
+     },
+     {
+      "w": 60,
+      "r": null
+     },
+     {
+      "w": 60,
+      "r": null
+     }
+    ],
+    "note": "type not given, assumed back squat as on 10-29; reps not reported"
+   },
+   {
+    "n": "Pull-up",
+    "u": "bodyweight",
+    "sets": [
+     {
+      "w": null,
+      "r": 3
+     },
+     {
+      "w": null,
+      "r": 3
+     },
+     {
+      "w": null,
+      "r": 3
+     },
+     {
+      "w": null,
+      "r": 3
+     }
+    ]
+   },
+   {
+    "n": "Dumbbell bench press",
+    "u": "lb / hand",
+    "sets": [
+     {
+      "w": 45,
+      "r": null
+     },
+     {
+      "w": 45,
+      "r": null
+     },
+     {
+      "w": 45,
+      "r": null
+     },
+     {
+      "w": 45,
+      "r": null
+     }
+    ],
+    "note": "reps not reported"
+   }
+  ]
  }
 ]
