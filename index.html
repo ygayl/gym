@@ -98,8 +98,8 @@
 <div id="app"></div>
 
 <div class="note">
-  <b>Stop rule.</b> Sharp pain in the right ankle or the top of the foot → stop that exercise and text it in. Dull muscle soreness is fine to train through.<br><br>
-  <b>Both feet on everything.</b> No single-leg loading, no running, no jumping until after 24 Sep.
+  <b>Stop rule.</b> Sharp pain in the knee, foot or wrist → stop that exercise and text it in. Dull muscle soreness is fine.<br><br>
+  <b>Alternate A / B, 3x a week, never two days in a row.</b> No running, no jumping (foot). Easy bike 25–30 min on 1–2 other days.
 </div>
 
 <footer>Change set 1 and the sets below follow. Everything saves on this phone.</footer>
@@ -112,62 +112,42 @@
 </div>
 
 <script>
-const W = [
-  {n:"Dumbbell bench press", k:"flat bench", w:"35 lb / hand", wd:"35", u:"lb / hand", s:2, r:"8–10", t:"3s down · 1s pause on chest · 1s up", rest:120,
-   cue:"Pause a full second on the chest. <b>No bounce.</b>"},
-  {n:"Seated cable row", k:"neutral grip", w:"60 lb", wd:"60", u:"lb", s:2, r:"10–12", t:"3s on the return", rest:120,
-   cue:"Shoulder blade moves first, <b>then</b> the elbow. Don't shrug."},
-  {n:"Lat pulldown", k:"wide, palms forward", w:"60 lb", wd:"60", u:"lb", s:2, r:"8–10", t:"3s on the release", rest:120,
-   cue:"Chest up. Drive the elbows <b>down</b>, not back."},
-  {n:"DB shoulder press", k:"seated, back supported", w:"20 lb / hand", wd:"20", u:"lb / hand", s:2, r:"8–10", t:"controlled", rest:120,
-   cue:"Light on purpose. If the right side drifts forward, <b>drop to 15s</b>."},
-  {n:"Cable face pull", k:"rope, high pulley", w:"25 lb", wd:"25", u:"lb", s:2, r:"15", t:"controlled", rest:60,
-   cue:"Pull to your <b>forehead</b>. Thumbs rotate back at the end."},
-  {n:"Standing calf raise", k:"machine", w:"70 lb", wd:"70", u:"lb", s:2, r:"12–15", t:"2s hold in the stretch at the bottom", rest:60,
-   cue:"<b>Both feet.</b> The stretch at the bottom is the whole point."},
-  {n:"Tibialis raise", k:"bodyweight, back to a wall", w:"body", wd:"BW", u:"", s:2, r:"15–20", t:"slow both ways", rest:60,
-   cue:"The front-of-shin one. <b>Right leg is the one that matters.</b>"}
-];
-
-// Oct 14: knee hold (no squat/hack/leg press/lunge), back hold (no RDL), wrist (neutral grip only).
-// Put hack squat back in A and RDL + leg press back in B once the knee (Oct 26) and back are cleared.
-// Oct 14 (later): right forefoot pain on top near the 2nd toe → rule out metatarsal stress fracture.
-// Calf raise, tibialis raise and farmer's carries out until the foot is checked.
-// Oct 17: short A, 2nd day in a row after B. Leg curl / abduction / leg ext hold out (done Oct 16), hip thrust in.
+// Nov 11: 4-lift sessions, 45 min max (his call: fewer exercises, compound only).
+// Knee = PFPS (Oct 26), no PT → hip thrust is the rehab and leads B. Squat load holds until the knee is 0–1/10 the next morning.
+// Calf raise / tibialis / carries stay off (foot). Face pull, leg curl, abduction dropped.
 const A = [
-  {n:"Hip thrust", k:"barbell, upper back on a bench", w:"bar + 25 / side", wd:"95", u:"lb total", s:3, r:"10", t:"1s pause at the top", rest:120,
-   cue:"<b>Do this first.</b> Drive through the heels, ribs down. Top of the foot sharp → stop."},
-  {n:"Dumbbell bench press", k:"flat bench, palms facing each other", w:"40 lb / hand", wd:"40", u:"lb / hand", s:3, r:"8–10", t:"3s down · 1s pause", rest:120,
-   cue:"Wrist <b>straight</b>, not bent back. Wrist over 3/10 → drop to 35."},
-  {n:"Seated cable row", k:"neutral grip, chest on the pad", w:"50 lb", wd:"50", u:"lb", s:3, r:"10–12", t:"3s on the return", rest:90,
-   cue:"<b>Back check first:</b> press the spot by the shoulder blade + twist. Over 1/10 → skip."},
-  {n:"Cable face pull", k:"rope, high pulley", w:"30 lb", wd:"30", u:"lb", s:3, r:"15", t:"controlled", rest:60,
-   cue:"To the forehead, thumbs back. All 15s clean → 35 on set 3."}
+  {n:"Barbell back squat", k:"to parallel, no deeper", w:"95 lb (bar + 25 / side)", wd:"95", u:"lb total", s:4, r:"10", t:"2s down · no bounce", rest:120,
+   cue:"Knee <b>2/10 or more</b> next morning → weight comes down. Don't add load yet."},
+  {n:"Dumbbell bench press", k:"flat bench, palms facing each other", w:"50 lb / hand", wd:"50", u:"lb / hand", s:4, r:"8", t:"3s down · 1s pause", rest:120,
+   cue:"Wrist <b>straight</b>. All 4×8 clean twice → 4×10, then 55."},
+  {n:"Pull-up", k:"bodyweight, full hang to chin over bar", w:"body", wd:"BW", u:"bodyweight", s:4, r:"3", t:"controlled down", rest:120,
+   cue:"Stop 1 rep before failure. Goal: <b>4×5</b>, then add sets of 6."},
+  {n:"Seated cable row", k:"single arm", w:"40 lb / arm", wd:"40", u:"lb", s:4, r:"10", t:"3s on the return", rest:90,
+   cue:"Shoulder blade first, then the elbow. Shoulder-blade pain → stop."},
+  {n:"Bike", k:"easy, talking pace", w:"10 min", wd:"10", u:"min", s:1, r:"10 min", t:"full sentences", rest:60,
+   cue:"<b>Not optional.</b> This is the cardio."}
 ];
 
-// Oct 19: B, 2nd day in a row after A (Oct 18). Leg curl / abduction / row out (done Oct 18). Hip thrust skipped 3x → first, with a swap.
 const B = [
-  {n:"Hip thrust", k:"barbell, upper back on a bench · or glute-bridge machine", w:"bar + 25 / side", wd:"95", u:"lb total", s:3, r:"10", t:"1s pause at the top", rest:120,
-   cue:"<b>Do this first.</b> Setup annoying → glute-bridge machine, same sets. Top of the foot sharp → stop."},
-  {n:"Lat pulldown", k:"wide, palms forward", w:"55 lb", wd:"55", u:"lb", s:3, r:"8–10", t:"3s on the release", rest:120,
-   cue:"Elbows down, not back. Shoulder-blade pain → stop."},
-  {n:"DB shoulder press", k:"seated, back supported, palms facing each other", w:"27.5 lb / hand", wd:"27.5", u:"lb / hand", s:3, r:"8–10", t:"controlled", rest:120,
+  {n:"Hip thrust", k:"barbell, upper back on a bench · or glute-bridge machine", w:"bar + 25 / side", wd:"95", u:"lb total", s:4, r:"10", t:"1s pause at the top", rest:120,
+   cue:"<b>First, every time.</b> This is the knee rehab. Setup annoying → glute-bridge machine."},
+  {n:"Romanian deadlift", k:"barbell, soft knees", w:"65 lb total", wd:"65", u:"lb total", s:4, r:"10", t:"3s down · hips back", rest:120,
+   cue:"Start light. Lower-back pinch or shoulder-blade pain → stop."},
+  {n:"DB shoulder press", k:"seated, back supported, palms facing each other", w:"30 lb / hand", wd:"30", u:"lb / hand", s:4, r:"10", t:"controlled", rest:120,
    cue:"Wrist straight. Wrist over 3/10 → drop to 25."},
-  {n:"Leg extension hold", k:"machine, knee bent ~60°", w:"~70 lb", wd:"70", u:"lb", s:3, r:"30–45s hold", t:"hold, don't move", rest:60,
-   cue:"Knee pain <b>3/10 max</b>."},
-  {n:"Cable face pull", k:"rope, high pulley", w:"30 lb", wd:"30", u:"lb", s:3, r:"15", t:"controlled", rest:60,
-   cue:"Skipped Oct 18. To the forehead, thumbs back."},
-  {n:"Curl + pushdown", k:"superset, no rest between", w:"curl 17.5 / hand · pushdown ~30", wd:"17.5", u:"lb", s:3, r:"12–15", t:"controlled", rest:90,
-   cue:"Arms. Keep it light, this is the dessert."}
+  {n:"Lat pulldown", k:"wide, palms forward", w:"50 lb", wd:"50", u:"lb", s:4, r:"10–12", t:"3s on the release", rest:90,
+   cue:"Elbows down, not back. All 12s → 55."},
+  {n:"Bike", k:"easy, talking pace", w:"10 min", wd:"10", u:"min", s:1, r:"10 min", t:"full sentences", rest:60,
+   cue:"<b>Not optional.</b> This is the cardio."}
 ];
 
 const S = {
-  U:{name:"Upper", sub:"Thu 10 Sep · week 1 · 2 sets, stop 4 reps short", ex:W},
-  A:{name:"A", sub:"Sat 17 Oct · short · 3 sets, stop 2–3 reps short · no hangs (wrist)", ex:A},
-  B:{name:"B", sub:"Mon 19 Oct · 3 sets, stop 2–3 reps short · no hangs (wrist)", ex:B}
+  A:{name:"A", sub:"Squat · bench · pull-up · row · 4 sets, stop 1–2 reps short · ~45 min", ex:A},
+  B:{name:"B", sub:"Hip thrust · RDL · press · pulldown · 4 sets, stop 1–2 reps short · ~45 min", ex:B}
 };
 
-let cur = localStorage.getItem("cur") || "U";
+let cur = localStorage.getItem("cur");
+if(!S[cur]) cur = "A";
 const key = (k,i) => "g:"+cur+":"+k+":"+i;
 
 function render(){
@@ -300,7 +280,7 @@ function copyLog(){
                                         : done.map((_,x)=>ws[x]+"×"+rs[x]).join(", ")+u;
     out += "• "+e.n+" — "+line+" ("+done.length+"/"+e.s+" sets)\n";
   });
-  out += "\nFelt: \nAnkle: ";
+  out += "\nFelt: \nKnee next morning /10: ";
   navigator.clipboard.writeText(out).then(()=>{
     copybtn.textContent="Copied ✓"; setTimeout(()=>copybtn.textContent="Copy log",1600);
   },()=>{ prompt("Copy this:", out); });
