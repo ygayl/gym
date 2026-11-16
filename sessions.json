@@ -1591,5 +1591,89 @@
         "note": "reported as 'DB cable row 40lb each side', likely single-arm, 40 per arm"
       }
     ]
+  },
+  {
+    "date": "2026-11-16",
+    "session": "A",
+    "ex": [
+      {
+        "n": "Barbell back squat",
+        "u": "lb total",
+        "sets": [
+          {
+            "w": 95,
+            "r": 10
+          },
+          {
+            "w": 95,
+            "r": 10
+          },
+          {
+            "w": 95,
+            "r": 10
+          },
+          {
+            "w": 95,
+            "r": 10
+          }
+        ],
+        "note": "reported as 25 lb/side; 95 assumes a 45 bar"
+      },
+      {
+        "n": "Dumbbell bench press",
+        "u": "lb / hand",
+        "sets": [
+          {
+            "w": 50,
+            "r": 8
+          },
+          {
+            "w": 50,
+            "r": 8
+          },
+          {
+            "w": 50,
+            "r": 8
+          },
+          {
+            "w": 50,
+            "r": 8
+          }
+        ]
+      },
+      {
+        "n": "Pull-up",
+        "u": "bodyweight",
+        "sets": [
+          {
+            "w": null,
+            "r": 3
+          },
+          {
+            "w": null,
+            "r": 2
+          },
+          {
+            "w": null,
+            "r": 2
+          },
+          {
+            "w": null,
+            "r": 2
+          }
+        ]
+      },
+      {
+        "n": "Rowing machine",
+        "u": "min",
+        "sets": [
+          {
+            "w": 5,
+            "r": null
+          }
+        ],
+        "note": "resistance 5, in place of the 10 min bike"
+      }
+    ]
   }
 ]
