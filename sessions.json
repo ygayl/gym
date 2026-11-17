@@ -1675,5 +1675,103 @@
         "note": "resistance 5, in place of the 10 min bike"
       }
     ]
+  },
+  {
+    "date": "2026-11-17",
+    "session": "B",
+    "ex": [
+      {
+        "n": "Hip thrust",
+        "u": "lb total",
+        "sets": [
+          {
+            "w": 95,
+            "r": 10
+          },
+          {
+            "w": 95,
+            "r": 10
+          },
+          {
+            "w": 95,
+            "r": 10
+          },
+          {
+            "w": 95,
+            "r": 10
+          }
+        ],
+        "note": "bar + 25/side, prescribed weight assumed (none reported); first time done"
+      },
+      {
+        "n": "Romanian deadlift",
+        "u": "lb / hand",
+        "sets": [
+          {
+            "w": 30,
+            "r": 10
+          },
+          {
+            "w": 30,
+            "r": 10
+          },
+          {
+            "w": 30,
+            "r": 10
+          },
+          {
+            "w": 30,
+            "r": 10
+          }
+        ],
+        "note": "dumbbell RDL, 30/hand prescribed weight assumed"
+      },
+      {
+        "n": "DB shoulder press",
+        "u": "lb / hand",
+        "sets": [
+          {
+            "w": 30,
+            "r": 10
+          },
+          {
+            "w": 30,
+            "r": 10
+          },
+          {
+            "w": 30,
+            "r": 10
+          },
+          {
+            "w": 30,
+            "r": 10
+          }
+        ],
+        "note": "seated, prescribed weight assumed"
+      },
+      {
+        "n": "Lat pulldown",
+        "u": "lb",
+        "sets": [
+          {
+            "w": 50,
+            "r": 10
+          },
+          {
+            "w": 50,
+            "r": 10
+          },
+          {
+            "w": 50,
+            "r": 10
+          },
+          {
+            "w": 50,
+            "r": 10
+          }
+        ],
+        "note": "prescribed weight assumed; reps assumed 10 (prescribed 10-12)"
+      }
+    ]
   }
 ]
