@@ -1773,5 +1773,22 @@
         "note": "prescribed weight assumed; reps assumed 10 (prescribed 10-12)"
       }
     ]
+  },
+  {
+    "date": "2026-11-24",
+    "session": "Cardio",
+    "ex": [
+      {
+        "n": "Bike",
+        "u": "min",
+        "sets": [
+          {
+            "w": 36,
+            "r": null
+          }
+        ],
+        "note": "Precor, 35:50, 7.81 mi (~13 mph), 73 rpm avg, 274 kcal (machine estimate), no HR"
+      }
+    ]
   }
 ]
